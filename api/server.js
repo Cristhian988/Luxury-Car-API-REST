@@ -5,6 +5,7 @@ import connectDB from "./config/mongodb.js";
 import connectCloudinary from "./config/cloudinary.js";
 import userRouter from "./routes/userRoute.js";
 import autoRouter from "./routes/autoRoute.js";
+import { listAutos } from "./controllers/autoController.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -22,9 +23,7 @@ app.use("/api/user", userRouter);
 app.use("/api/auto", autoRouter);
 
 // Routes
-app.get("/", (req, res) => {
-  res.send("API Working!");
-});
+app.get("/", listAutos);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
